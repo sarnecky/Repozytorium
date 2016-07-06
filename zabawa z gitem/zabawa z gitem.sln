@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabawa z gitem", "zabawa z gitem\zabawa z gitem.csproj", "{45AE985F-C47F-44D5-8526-601A39F50986}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zabawa z gitem.Tests", "zabawa z gitem.Tests\zabawa z gitem.Tests.csproj", "{46393B8F-D0A5-48C1-8144-6A52CA2284A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45AE985F-C47F-44D5-8526-601A39F50986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45AE985F-C47F-44D5-8526-601A39F50986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45AE985F-C47F-44D5-8526-601A39F50986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45AE985F-C47F-44D5-8526-601A39F50986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46393B8F-D0A5-48C1-8144-6A52CA2284A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46393B8F-D0A5-48C1-8144-6A52CA2284A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46393B8F-D0A5-48C1-8144-6A52CA2284A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46393B8F-D0A5-48C1-8144-6A52CA2284A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
