@@ -14,6 +14,5 @@ namespace zabawa_z_gitem.Controllers
             //utowrzenie plikus
             return View();
             //jakas tam edycja
-        }
     }
 }
