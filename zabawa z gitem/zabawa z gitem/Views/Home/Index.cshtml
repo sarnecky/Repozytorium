@@ -1,8 +1,53 @@
-﻿@model dynamic
+﻿@model  IEnumerable<zabawa_z_gitem.Models.TextFile>
 
 @{
     ViewBag.Title = "title";
-    Layout = "_Layout";
 }
 
-<h2>title</h2>
+<div class="container">
+    <h2>Pliki</h2>
+    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new {enctype= "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+        <input type="file" name="file"/>
+        <input type="submit" value="Upload"/>
+    }
+    @if (Model.Any())
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Rozszerzenie</th>
+                    <th>Data dodania</th>
+                    <th>Rozmiar</th>
+                    <th>Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var file in Model)
+            {
+                <tr>
+                    <td>@file.Name</td>
+                    <td>@file.Type.Name</td>
+                    <td>@file.AddedDateTime</td>
+                    <td>@file.Size B</td>
+                    <td>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" />
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div style="text-align: center;">Brak plikow, smutno :( </div>
+    }
+
+</div>
