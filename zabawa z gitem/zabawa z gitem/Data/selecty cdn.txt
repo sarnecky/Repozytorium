@@ -1,0 +1,14 @@
+SELECT [DISTINCT] <lista kolumn/wyrazen>
+FROM <nazwa tablicy>
+[ WHERE <warunek> ]
+Zapytanie proste przeprowadza kombinacje projekcji i selekcji (jesli wystepuje fraza WHERE)
+w stosunku do jednej tablicy.
+Uwaga: <lista kolumn> moze przybrac forme * (co oznacza wybór wszystkich kolumn).
+Przyklady:
+1. Pokaz identyfikatory i nazwiska wszystkich nauczycieli.
+SELECT TNo, TName
+FROM Teachers;
+2. Pokaz nazwy wszystkich miast, skad pochodza studenci.
+SELECT DISTINCT City
+FROM Students;
+Uwaga: Bez slowa DISTINCT nazwy miast moglyby sie powtarzac.

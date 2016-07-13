@@ -33,7 +33,7 @@ namespace zabawa_z_gitem.Controllers
                 var fileName = Path.GetFileName(file.FileName);
                 var fileSize = file.ContentLength;
                 var path = Path.Combine(Server.MapPath("~/Data"), fileName);
-                file.SaveAs(path);
+                file.SaveAs(path); 
 
                 TextFile newTextFile = new TextFile() {Name = fileName, Size = fileSize, AddedDateTime = DateTime.Now, TypeId = 1};
                 Db.TextFiles.AddOrUpdate(newTextFile);

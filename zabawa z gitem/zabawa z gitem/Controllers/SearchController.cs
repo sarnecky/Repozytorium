@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using zabawa_z_gitem.DAL;
 using zabawa_z_gitem.Models;
+using zabawa_z_gitem.SearchEngine;
 
 namespace zabawa_z_gitem.Controllers
 {
     public class SearchController : Controller
     {
+        private StoreContext Db = new StoreContext();
         // GET: Search
         public ActionResult Index()
         {
@@ -18,11 +22,47 @@ namespace zabawa_z_gitem.Controllers
         [HttpGet]
         public ActionResult Index(SearchModel model)
         {
-            //nasz algorytm szukania pdf
-            model.SearchResuts = new List<SearchReslutModel>()
+            string text="", pattern="";
+            model.SearchResuts = new List<SearchReslutModel>();
+
+            RabinKarpSearch search = new RabinKarpSearch();
+
+            if (model.SerachString!= null)
             {
-                new SearchReslutModel() {Name = "afasf", NumberOfStrings =new Dictionary<string, int>() { {"film",12}, { "zjebany", 15 } } }
-            };
+                foreach (var file in Db.TextFiles)
+                {
+
+                    //wydobycie calego tekstu z pliku
+                    try
+                    {
+                        using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name))))
+                        {
+                            text = sr.ReadToEnd().ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        //Nie mozna otowrzyc pliku
+                        Response.Write("Some Error");
+                    }
+
+                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tylko jeden string narazie
+                    //przypisanie 
+                    pattern = model.SerachString;
+
+                    pattern = pattern.ToLower();
+                    text = text.ToLower();
+
+                    var collectionOfBeginningStrings = search.searchPattern(text, pattern); //szukam danego stringa w teksie
+                    int countOfString = collectionOfBeginningStrings.Count();
+
+                    if (countOfString > 0)
+                    {
+                        model.SearchResuts.Add(new SearchReslutModel() { Name = file.Name, NumberOfStrings = new Dictionary<string, int>() { { pattern, countOfString } } });
+                    }
+                }
+            }
+
             return View(model);
         }
     }

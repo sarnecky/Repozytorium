@@ -8,8 +8,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             @using (Html.BeginForm("Index", "Search", FormMethod.Get, new {role = "search", @class = "navbar-form"}))
-            {
-                
+            {          
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">#</span>
                     <input type="text" name="UserId" value=1 hidden>
@@ -43,7 +42,7 @@
                         <div class="col-xs-12 col-md-8">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <a href=@file.Name target="_blank">@file.Name</a>
+                                    <a href="~/Data/@file.Name" target="_blank">@file.Name</a>
                                 </div>
                             </div>
                         </div>
