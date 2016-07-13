@@ -150,6 +150,9 @@
       <DependentUpon>201607101320277_StartMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\GenericModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SearchReslutModel.cs" />
     <Compile Include="Models\TextFile.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

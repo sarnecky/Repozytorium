@@ -1,39 +1,60 @@
-﻿@model dynamic
+﻿@model zabawa_z_gitem.Models.SearchModel
 @{
     ViewBag.Title = "Search Engine";
 }
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-md-8">
-            <form class="navbar-form navbar-fixed-top" role="search">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @using (Html.BeginForm("Index", "Search", FormMethod.Get, new {role = "search", @class = "navbar-form"}))
+            {
+                
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1">#</span>
-                    <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
+                    <input type="text" name="UserId" value=1 hidden>
+                    @Html.TextBoxFor(item =>item.SerachString, new {@class="form-control", placeholder="Search"})
+                    
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Search</button>
-            </form>
+            }
+
         </div>
+
+        <div class="col-md-4"></div>
     </div>
+</div>
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
+        <div class="col-lg-6 col-lg-offset-4">
 
+            @if (Model.SearchResuts.Any())
+            {
+                foreach (var file in Model.SearchResuts)
+                {
+                    <h4>
+                        @foreach (var str in file.NumberOfStrings)
+                        {
+                            @Html.Raw(str.Key) <span class="label label-default">@Html.Raw(str.Value)</span>
+                        }
+                    </h4>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <a href=@file.Name target="_blank">@file.Name</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <span class="label label-warning">Brak skojarzonych plików</span>
+            }
 
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h1>slowo 1 <span class="label label-default">20</span>slowo 2 <span class="label label-default">24</span></h1>
-    <div class="row">
-        <div class="col-xs-12 col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="newsletter_01.pdf" target="_blank">link</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>
