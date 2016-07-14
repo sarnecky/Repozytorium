@@ -26,29 +26,32 @@ namespace zabawa_z_gitem.Controllers
             model.SearchResuts = new List<SearchReslutModel>();
 
             RabinKarpSearch search = new RabinKarpSearch();
-
+            FileToString fileToString = null;
+            StringFromFile changer = null;
+            //DI
+            //unikamy instancjonowania określonych klas w różnych miejscach aplikacji i skupiamy się bardziej na abstrakcji
+            //majac pewna klase wstrzykujemy w nia zalzeznosc, przez wykonanie na jej konstruktorze konstruktora z docelowego obiektu
+            //dana klasa nie bedzie wiedziec na jakim obiekcie pracuje, wiec kazdy bierze odpowiedzialnosc za siebie
             if (model.SerachString!= null)
             {
+               
                 foreach (var file in Db.TextFiles)
                 {
+                    if(file.Type.Name==".txt")
+                         fileToString = new TxtToString();
+                    if (file.Type.Name == ".pdf")
+                        fileToString = new PdfToString();
+                    if (file.Type.Name == ".docx")
+                        fileToString = new DocxToString();
+
+                    changer = new StringFromFile(fileToString);
 
                     //wydobycie calego tekstu z pliku
-                    try
-                    {
-                        using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name))))
-                        {
-                            text = sr.ReadToEnd().ToString();
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        //Nie mozna otowrzyc pliku
-                        Response.Write("Some Error");
-                    }
+                    text = changer.GetStringFormFile(file,
+                        Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name)));
 
-                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tylko jeden string narazie
                     //przypisanie 
-                    pattern = model.SerachString;
+                    pattern = model.SerachString;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tylko jeden string narazie
 
                     pattern = pattern.ToLower();
                     text = text.ToLower();

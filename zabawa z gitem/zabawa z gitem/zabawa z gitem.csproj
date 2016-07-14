@@ -85,6 +85,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -159,7 +163,12 @@
     <Compile Include="Models\TextFile.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchEngine\DocxToString.cs" />
+    <Compile Include="SearchEngine\FileToString.cs" />
+    <Compile Include="SearchEngine\PdfToString.cs" />
+    <Compile Include="SearchEngine\StringFromFile.cs" />
     <Compile Include="SearchEngine\RabinKarpSearch.cs" />
+    <Compile Include="SearchEngine\TxtToString.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

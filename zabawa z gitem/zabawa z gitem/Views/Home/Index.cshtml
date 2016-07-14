@@ -7,7 +7,7 @@
 
 <div class="container">
     <h2>Pliki</h2>
-    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new {enctype= "multipart/form-data" }))
+    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
     {
         @Html.ValidationSummary(true)
         <input type="file" name="file"/>
@@ -17,26 +17,26 @@
     {
         <table class="table table-hover">
             <thead>
-                <tr>
-                    <th>Nazwa</th>
-                    <th>Rozszerzenie</th>
-                    <th>Data dodania</th>
-                    <th>Rozmiar</th>
-                    <th>Usuń</th>
-                </tr>
-            </thead> 
+            <tr>
+                <th>Nazwa</th>
+                <th>Rozszerzenie</th>
+                <th>Data dodania</th>
+                <th>Rozmiar</th>
+                <th>Usuń</th>
+            </tr>
+            </thead>
             <tbody>
             @foreach (var file in Model)
             {
                 <tr>
                     <td>@file.Name</td>
-                    <td><img src="~/Icons/@file.Type.IconFileName" alt="@file.Type.IconFileName" width="20px" height="20px" /></td>
-                    <td>@file.AddedDateTime</td> 
+                    <td><img src="~/Icons/@file.Type.IconFileName" alt="@file.Type.IconFileName" width="20px" height="20px"/></td>
+                    <td>@file.AddedDateTime</td>
                     <td>@file.Size B</td>
                     <td>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="" />
+                                <input type="checkbox" value=""/>
                             </label>
                         </div>
                     </td>
@@ -52,3 +52,4 @@
     }
 
 </div>
+>
