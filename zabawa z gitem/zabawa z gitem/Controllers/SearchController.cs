@@ -37,22 +37,31 @@ namespace zabawa_z_gitem.Controllers
                
                 foreach (var file in Db.TextFiles)
                 {
-                    if(file.Type.Name==".txt")
-                         fileToString = new TxtToString();
-                    if (file.Type.Name == ".pdf")
-                        fileToString = new PdfToString();
-                    if (file.Type.Name == ".docx")
-                        fileToString = new DocxToString();
+                    switch (file.Type.Name)
+                    {
+                        case ".txt":
+                            fileToString = new TxtToString();
+                            break;
+                        case ".pdf":
+                            fileToString = new PdfToString();
+                            break;
+                        case ".docx":
+                            fileToString = new DocxToString();
+                            break;
+                        default:
+                            fileToString = null;
+                            break;
+                    }
 
-                    changer = new StringFromFile(fileToString);
-
-                    //wydobycie calego tekstu z pliku
-                    text = changer.GetStringFormFile(file,
-                        Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name)));
-
+                    if (fileToString != null)
+                    {
+                        changer = new StringFromFile(fileToString);
+                        //wydobycie calego tekstu z pliku
+                        text = changer.GetStringFormFile(file,
+                            Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name)));
+                    }
                     //przypisanie 
                     pattern = model.SerachString;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tylko jeden string narazie
-
                     pattern = pattern.ToLower();
                     text = text.ToLower();
 

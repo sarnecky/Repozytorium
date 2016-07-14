@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using zabawa_z_gitem.DAL;
 using zabawa_z_gitem.Models;
-
+using zabawa_z_gitem.SearchEngine;
+using System.Reflection;
 namespace zabawa_z_gitem.Controllers
 {
     public class HomeController : Controller
@@ -17,30 +18,55 @@ namespace zabawa_z_gitem.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //TextFile TextFile = new TextFile {Name = "ako.pdf", AddedDateTime = DateTime.Now, Size = 178};
             IEnumerable<TextFile> userFiles;
             userFiles = Db.TextFiles.ToArray();
-            //utowrzenie plikus
+            //utowrzenie pliku
             return View(userFiles);
-            //jakas tam edycja
         }
 
         [HttpPost]
         public ActionResult UploadFile(HttpPostedFileBase file)
         {
+            TextFile newTextFile = null;
+
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
                 var fileSize = file.ContentLength;
                 var path = Path.Combine(Server.MapPath("~/Data"), fileName);
-                file.SaveAs(path); 
+                file.SaveAs(path);
+                string ext = Path.GetExtension(file.FileName);
 
-                TextFile newTextFile = new TextFile() {Name = fileName, Size = fileSize, AddedDateTime = DateTime.Now, TypeId = 1};
-                Db.TextFiles.AddOrUpdate(newTextFile);
-                Db.SaveChanges();
+                int type = GetType(ext);
+                
+                if(type!=0)
+                    newTextFile = new TextFile() {Name = fileName, Size = fileSize, AddedDateTime = DateTime.Now, TypeId = type};
+
+                if (newTextFile != null)
+                {
+                    Db.TextFiles.AddOrUpdate(newTextFile);
+                    Db.SaveChanges();
+                }
             }
 
             return RedirectToAction("Index");
+        }
+
+        private int GetType(string ext)
+        {
+            ext = ext.Remove(0, 1); //usuniecie kropki
+            int i = 1;
+            //wykorzystuje refleksję do utworzenia konkretnego enuma
+           System.Type myenum = System.Type.GetType("zabawa_z_gitem.SearchEngine.TypesOfFiles");
+
+            foreach (var t in Enum.GetValues(myenum))
+            {
+                if (t.ToString().ToLower() == ext)
+                    return i;
+                i++;
+            }
+
+            return 0;
         }
     }
 }
