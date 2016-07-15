@@ -14,6 +14,12 @@ namespace zabawa_z_gitem
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "PrepareData",
+                url: "{action}",
+                defaults: new {controller = "Home", action = "Index"}
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -68,5 +68,28 @@ namespace zabawa_z_gitem.Controllers
 
             return 0;
         }
+
+        public ActionResult RemoveFile(int fileId)
+        {
+            var textFile = Db.TextFiles.FindTextFileWithId(fileId);
+            var result = new RemovedViewModel();
+
+            if (textFile != null)
+            {
+                Db.TextFiles.Remove(textFile);
+                Db.SaveChanges();
+                var fileName = Path.GetFileName(textFile.Name);
+                var filePath = Path.Combine(Server.MapPath("~/Data"), fileName);
+                System.IO.File.Delete(filePath);
+
+                result.Removed = true;
+            }
+            else
+            {
+                result.Removed = false;
+            }
+
+            return Json(result);
+        }
     }
 }

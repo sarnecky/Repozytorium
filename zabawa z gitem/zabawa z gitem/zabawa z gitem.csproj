@@ -155,6 +155,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TextFileExtension.cs" />
     <Compile Include="DAL\Initializer.cs" />
     <Compile Include="DAL\StoreContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +167,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\GenericModel.cs" />
+    <Compile Include="Models\RemovedViewModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\SearchReslutModel.cs" />
     <Compile Include="Models\TextFile.cs" />

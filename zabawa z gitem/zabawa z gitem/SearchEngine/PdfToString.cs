@@ -13,7 +13,6 @@ namespace zabawa_z_gitem.SearchEngine
             StringBuilder text = new StringBuilder();
             using (PdfReader reader = new PdfReader(path))
             {
-
                 for (int i = 1; i <= reader.NumberOfPages; i++)
                 {
                     text.Append(PdfTextExtractor.GetTextFromPage(reader, i));
