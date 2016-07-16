@@ -61,16 +61,26 @@ namespace zabawa_z_gitem.Controllers
                             Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name)));
                     }
                     //przypisanie 
-                    pattern = model.SerachString;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! tylko jeden string narazie
+                    string[] patterns = model.SerachString.Split(new[] { ',', ' ' });
                     pattern = pattern.ToLower();
                     text = text.ToLower();
 
-                    var collectionOfBeginningStrings = search.searchPattern(text, pattern); //szukam danego stringa w teksie
-                    int countOfString = collectionOfBeginningStrings.Count();
-
-                    if (countOfString > 0)
+                    bool findAnyPattern = false;
+                    var numberOfStrings = new Dictionary<string, int>();
+                    foreach (var s in patterns)
                     {
-                        model.SearchResuts.Add(new SearchReslutModel() { Name = file.Name, NumberOfStrings = new Dictionary<string, int>() { { pattern, countOfString } } });
+                        var collectionOfBeginningStrings = search.searchPattern(text, s); //szukam danego stringa w teksie
+                        int countOfString = collectionOfBeginningStrings.Count();
+                        if (countOfString > 0)
+                        {
+                            numberOfStrings.Add(s,countOfString);
+                            findAnyPattern = true;
+                        }
+                    }
+
+                    if (findAnyPattern)
+                    {
+                        model.SearchResuts.Add(new SearchReslutModel() { Name = file.Name, NumberOfStrings = numberOfStrings});
                     }
                 }
             }
