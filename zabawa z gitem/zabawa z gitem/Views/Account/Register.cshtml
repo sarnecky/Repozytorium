@@ -1,0 +1,42 @@
+﻿@model  zabawa_z_gitem.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Rejstracja";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="form-login">
+                <h2>Rejstracja</h2>
+                @using (Html.BeginForm("Register", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationMessage("loginerror", "")
+                    @Html.ValidationSummary()
+
+                    @Html.TextBoxFor(i => i.Email, new {@class = "form-control input-sm chat-input", placeholder = "Email"})
+                    <font color="red">@Html.ValidationMessageFor(i => i.Email)</font>
+                    <br>
+                    @Html.PasswordFor(i => i.Password, new {@class = "form-control input-sm chat-input", placeholder = "Hasło"})
+                    <font color="red">@Html.ValidationMessageFor(i => i.Password)</font>
+                    <br>
+                    @Html.PasswordFor(i => i.ConfirmPassword, new {@class = "form-control input-sm chat-input", placeholder = "Powtórz hasło"})
+                    <font color="red">@Html.ValidationMessageFor(i => i.ConfirmPassword)</font>
+                    <br>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Zarejstruj</button>
+                }
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/scripts/jquery-1.9.1.js"></script>
+<script src="~/scripts/jquery.validate.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.js"></script>
