@@ -19,9 +19,11 @@ namespace zabawa_z_gitem.Controllers
         private StoreContext Db = new StoreContext();
         // GET: Home
         public ActionResult Index()
-        {
-            IEnumerable<TextFile> userFiles; //czyli pliki jednak beda musialy miec nazwe posiadacza, chyba ze wjedziesz do folderu zwrocisz nazwy plikow i wyszukasz
-            userFiles = Db.TextFiles.ToArray();
+        {  
+            IEnumerable<TextFile> userFiles=null;
+            string user = User.Identity.GetUserName();
+            if (Request.IsAuthenticated)
+                userFiles = Db.TextFiles.Where(i => i.UserName == user).ToArray();
             //utowrzenie pliku
             return View(userFiles);
         }
@@ -42,7 +44,7 @@ namespace zabawa_z_gitem.Controllers
                 int type = GetType(ext);
                 
                 if(type!=0)
-                    newTextFile = new TextFile() {Name = fileName, Size = fileSize, AddedDateTime = DateTime.Now, TypeId = type};
+                    newTextFile = new TextFile() {UserName = User.Identity.GetUserName(), Name = fileName, Size = fileSize, AddedDateTime = DateTime.Now, TypeId = type};
 
                 if (newTextFile != null)
                 {
@@ -81,7 +83,7 @@ namespace zabawa_z_gitem.Controllers
                 Db.TextFiles.Remove(textFile);
                 Db.SaveChanges();
                 var fileName = Path.GetFileName(textFile.Name);
-                var filePath = Path.Combine(Server.MapPath("~/Data"), fileName);
+                var filePath = Path.Combine(Server.MapPath(string.Concat("~/Data/", textFile.UserName)), fileName);
                 System.IO.File.Delete(filePath);
 
                 result.Removed = true;

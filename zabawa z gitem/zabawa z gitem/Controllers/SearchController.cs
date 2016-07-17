@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using zabawa_z_gitem.DAL;
 using zabawa_z_gitem.Models;
 using zabawa_z_gitem.SearchEngine;
@@ -34,8 +36,13 @@ namespace zabawa_z_gitem.Controllers
             //dana klasa nie bedzie wiedziec na jakim obiekcie pracuje, wiec kazdy bierze odpowiedzialnosc za siebie
             if (model.SerachString!= null)
             {
-               
-                foreach (var file in Db.TextFiles) //tutaj bedziesz uderzac do konkretnego usera
+
+                //pliki konkretnego uzytkownika
+                string user = User.Identity.GetUserName();
+                IEnumerable<TextFile> files =
+                    Db.TextFiles.Where(i => i.UserName == user).ToArray();
+
+                foreach (var file in files) //tutaj bedziesz uderzac do konkretnego usera
                 {
                     switch (file.Type.Name)
                     {
@@ -58,7 +65,7 @@ namespace zabawa_z_gitem.Controllers
                         changer = new StringFromFile(fileToString);
                         //wydobycie calego tekstu z pliku
                         text = changer.GetStringFormFile(file,
-                            Path.Combine(Server.MapPath("~/Data"), Path.GetFileName(file.Name)));
+                            Path.Combine(Server.MapPath(string.Concat("~/Data/", User.Identity.Name)), Path.GetFileName(file.Name)));
                     }
                     //przypisanie 
                     string[] patterns = model.SerachString.Split(new[] { ',', ' ' });

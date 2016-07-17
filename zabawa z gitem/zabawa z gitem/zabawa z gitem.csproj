@@ -217,6 +217,18 @@
     <Compile Include="Migrations\201607162342420_AddAspNetIdentity.Designer.cs">
       <DependentUpon>201607162342420_AddAspNetIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607171306224_ChangeInTextFiles.cs" />
+    <Compile Include="Migrations\201607171306224_ChangeInTextFiles.Designer.cs">
+      <DependentUpon>201607171306224_ChangeInTextFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607171317037_ChangeInTextFiles1.cs" />
+    <Compile Include="Migrations\201607171317037_ChangeInTextFiles1.Designer.cs">
+      <DependentUpon>201607171317037_ChangeInTextFiles1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607171326392_Initial.cs" />
+    <Compile Include="Migrations\201607171326392_Initial.Designer.cs">
+      <DependentUpon>201607171326392_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GenericModel.cs" />
@@ -273,6 +285,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607162342420_AddAspNetIdentity.resx">
       <DependentUpon>201607162342420_AddAspNetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171306224_ChangeInTextFiles.resx">
+      <DependentUpon>201607171306224_ChangeInTextFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171317037_ChangeInTextFiles1.resx">
+      <DependentUpon>201607171317037_ChangeInTextFiles1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171326392_Initial.resx">
+      <DependentUpon>201607171326392_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
