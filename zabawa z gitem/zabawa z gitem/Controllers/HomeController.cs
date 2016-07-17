@@ -10,6 +10,8 @@ using zabawa_z_gitem.DAL;
 using zabawa_z_gitem.Models;
 using zabawa_z_gitem.SearchEngine;
 using System.Reflection;
+using Microsoft.AspNet.Identity;
+
 namespace zabawa_z_gitem.Controllers
 {
     public class HomeController : Controller
@@ -18,7 +20,7 @@ namespace zabawa_z_gitem.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            IEnumerable<TextFile> userFiles;
+            IEnumerable<TextFile> userFiles; //czyli pliki jednak beda musialy miec nazwe posiadacza, chyba ze wjedziesz do folderu zwrocisz nazwy plikow i wyszukasz
             userFiles = Db.TextFiles.ToArray();
             //utowrzenie pliku
             return View(userFiles);
@@ -26,14 +28,14 @@ namespace zabawa_z_gitem.Controllers
 
         [HttpPost]
         public ActionResult UploadFile(HttpPostedFileBase file)
-        {
+        { 
             TextFile newTextFile = null;
 
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
                 var fileSize = file.ContentLength;
-                var path = Path.Combine(Server.MapPath("~/Data"), fileName);
+                var path = Path.Combine(Server.MapPath(string.Concat("~/Data/",User.Identity.GetUserName())), fileName);
                 file.SaveAs(path);
                 string ext = Path.GetExtension(file.FileName);
 

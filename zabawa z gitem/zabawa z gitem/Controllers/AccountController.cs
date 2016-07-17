@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -131,6 +132,8 @@ namespace zabawa_z_gitem.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    //Utworzenie folderu dla danego uzytkownika
+                    System.IO.Directory.CreateDirectory(Path.Combine(Server.MapPath("~/Data"), model.Email));
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

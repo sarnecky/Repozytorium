@@ -262,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\ssarnecki35%40gmail.com\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

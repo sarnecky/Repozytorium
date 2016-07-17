@@ -35,7 +35,7 @@ namespace zabawa_z_gitem.Controllers
             if (model.SerachString!= null)
             {
                
-                foreach (var file in Db.TextFiles)
+                foreach (var file in Db.TextFiles) //tutaj bedziesz uderzac do konkretnego usera
                 {
                     switch (file.Type.Name)
                     {
