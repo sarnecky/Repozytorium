@@ -187,13 +187,24 @@
     <Content Include="Data\ako.pdf" />
     <Content Include="Data\cv-sebastian-sarnecki.PDF" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Data\bootstrap.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Data\jquery.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Data\css\bootstrap-theme.css" />
+    <Content Include="Data\css\bootstrap.min.css" />
+    <Content Include="Data\css\elegant-icons-style.css" />
+    <Content Include="Data\css\line-icons.css" />
+    <Content Include="Data\css\style-responsive.css" />
+    <Content Include="Data\css\style.css" />
+    <Content Include="Data\fonts\ElegantIcons.svg" />
+    <Content Include="Data\fonts\fontawesome-webfont.svg" />
+    <Content Include="Data\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +276,17 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Data\fonts\ElegantIcons.eot" />
+    <Content Include="Data\fonts\ElegantIcons.ttf" />
+    <Content Include="Data\fonts\ElegantIcons.woff" />
+    <Content Include="Data\fonts\fontawesome-webfont.eot" />
+    <Content Include="Data\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Data\fonts\fontawesome-webfont.woff" />
+    <Content Include="Data\fonts\FontAwesome.otf" />
+    <Content Include="Data\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Data\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Data\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Views\Home\HowItWorks.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

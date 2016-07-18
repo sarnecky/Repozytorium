@@ -95,5 +95,10 @@ namespace zabawa_z_gitem.Controllers
 
             return Json(result);
         }
+
+        public ActionResult HowItWorks()
+        {
+            return View();
+        }
     }
 }

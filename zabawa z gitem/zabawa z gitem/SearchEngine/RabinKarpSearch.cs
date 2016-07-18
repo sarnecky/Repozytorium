@@ -5,7 +5,7 @@ namespace zabawa_z_gitem.SearchEngine
 {
     public class RabinKarpSearch
     {
-        private double Prime = 101;
+        private double Prime = 3;
 
         public IEnumerable<ulong> searchPattern(string text, string pattern)
         {

@@ -2,23 +2,83 @@
 
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        @Html.AntiForgeryToken()
+    <div class="container-fluid">
 
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a></li>
-            <li>
-                @Html.ActionLink("Witaj " + User.Identity.GetUserName() + "!", "Index", "Home", routeValues: null, htmlAttributes: new {title = "Manage"})
-            </li>
-        </ul>
-    }
+        <header class="header dark-bg">
+
+            <!--logo start-->
+            <a href="~/Home/Index" class="logo">Repozytorium <span class="lite">PDF, TXT, DOCX</span></a>
+            <!--logo end-->
+
+            <div class="top-nav notification-row">
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+
+                    <!-- task notificatoin start -->
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="username">@User.Identity.Name</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+                                @Html.ActionLink("Moje Pliki", "Index", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Szukaj", "Index", "Search")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Jak to działa","HowItWorks","Home")
+                            </li>
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post,new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
+                            </li>
+                            <li>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+        </header>
+    </div>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Restracja", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+    <div class="container-fluid">
 
+        <header class="header dark-bg">
+
+            <!--logo start-->
+            <a href="index.html" class="logo">Repozytorium <span class="lite">PDF, TXT, DOCX</span></a>
+            <!--logo end-->
+
+            <div class="top-nav notification-row">
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+
+                    <!-- task notificatoin start -->
+                    <!-- user login registry-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Restracja", "Register", "Account")</li>
+                        <li>@Html.ActionLink("Zaloguj", "Login", "Account")</li>
+                    </ul>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+        </header>
+    </div>
+   
+}
+<br />
+<br/>
+<br />
+<br />
