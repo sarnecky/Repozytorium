@@ -133,10 +133,6 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bin\PdfSharp.Charting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -184,8 +180,6 @@
     <Content Include="Icons\txt.png" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Data\ako.pdf" />
-    <Content Include="Data\cv-sebastian-sarnecki.PDF" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Data\bootstrap.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
@@ -240,6 +234,10 @@
     <Compile Include="Migrations\201607171326392_Initial.Designer.cs">
       <DependentUpon>201607171326392_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607191246205_InitialMigrations.cs" />
+    <Compile Include="Migrations\201607191246205_InitialMigrations.Designer.cs">
+      <DependentUpon>201607191246205_InitialMigrations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GenericModel.cs" />
@@ -264,9 +262,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
@@ -316,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607171326392_Initial.resx">
       <DependentUpon>201607171326392_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607191246205_InitialMigrations.resx">
+      <DependentUpon>201607191246205_InitialMigrations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
