@@ -8,12 +8,22 @@
 
 <div class="container">
     <h2>Pliki</h2>
-    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
+    @if (Request.IsAuthenticated)
     {
-        @Html.ValidationSummary(true)
-        <input type="file" name="file"/>
-        <input type="submit" value="Upload"/>
+        using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+            <input type="file" name="file" />
+            <input type="submit" value="Upload" />
+        }
     }
+    else
+    {
+        
+        <input type="file" name="file" disabled/>
+        <input type="submit" value="Upload" disabled/>
+    }
+    <p>Zaloguj sie !</p>
     @if (Model!=null)
     {
         <table class="table table-hover">
