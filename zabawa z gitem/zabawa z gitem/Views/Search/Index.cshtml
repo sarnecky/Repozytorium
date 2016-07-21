@@ -11,7 +11,35 @@
             @using (Html.BeginForm("Index", "Search", FormMethod.Get, new {role = "search", @class = "navbar-form"}))
             {          
                 <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1">#</span>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Folder <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="trigger right-caret">Level 1</a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li><a href="#">Level 2</a></li>
+                                    <li>
+                                        <a class="trigger right-caret">Level 2</a>
+                                        <ul class="dropdown-menu sub-menu">
+                                            <li><a href="#">Level 3</a></li>
+                                            <li><a href="#">Level 3</a></li>
+                                            <li>
+                                                <a class="trigger right-caret">Level 3</a>
+                                                <ul class="dropdown-menu sub-menu">
+                                                    <li><a href="#">Level 4</a></li>
+                                                    <li><a href="#">Level 4</a></li>
+                                                    <li><a href="#">Level 4</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Level 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Level 1</a></li>
+                            <li><a href="#">Level 1</a></li>
+                        </ul>
+                    </div><!-- /btn-group -->
                     <input type="text" name="UserId" value=@User.Identity.GetUserName() hidden>
                     @Html.TextBoxFor(item =>item.SerachString, new {@class="form-control", placeholder="Search"})
                     
@@ -58,35 +86,7 @@
         </div>
     </div>
 </div>
-<div class="dropdown" style="position: relative">
-    <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Click Here <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-        <li>
-            <a class="trigger right-caret">Level 1</a>
-            <ul class="dropdown-menu sub-menu">
-                <li><a href="#">Level 2</a></li>
-                <li>
-                    <a class="trigger right-caret">Level 2</a>
-                    <ul class="dropdown-menu sub-menu">
-                        <li><a href="#">Level 3</a></li>
-                        <li><a href="#">Level 3</a></li>
-                        <li>
-                            <a class="trigger right-caret">Level 3</a>
-                            <ul class="dropdown-menu sub-menu">
-                                <li><a href="#">Level 4</a></li>
-                                <li><a href="#">Level 4</a></li>
-                                <li><a href="#">Level 4</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#">Level 2</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Level 1</a></li>
-        <li><a href="#">Level 1</a></li>
-    </ul>
-</div>
+
 <script>
     $(function () {
         $(".dropdown-menu > li > a.trigger").on("click", function (e) {
